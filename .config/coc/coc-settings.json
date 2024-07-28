@@ -1,0 +1,59 @@
+{
+    "languageserver": {
+        "rust-analyzer": {
+            "command": "rust-analyzer",
+            "filetypes": ["rust"],
+            "rootPatterns": ["Cargo.toml", "rust-project.json"],
+            "initializationOptions": {
+                "cargo": {
+                    "loadOutDirsFromCheck": true
+                },
+                "procMacro": {
+                    "enable": true
+                }
+            }
+        }
+    },
+
+
+    "suggest": {
+        "floatConfig": {
+            "width": 60,
+            "height": 10,
+            "border": true,
+            "floatEnable": false
+        },
+
+        "maxMenuWidth": 60,
+        "minMenuWidth": 10,
+        "maxCompleteItemCount": 20
+    },
+
+
+    "signature": {
+        "enable": false
+    },
+
+
+    "hover": {
+        "enable": false,
+        "floatConfig": {
+            "width": 60,
+            "height": 10,
+            "maxWidth": 60,
+            "maxHeight": 10
+        }
+    },
+
+
+    "diagnostic": {
+        "signOffset": 0,
+        "level": "error"
+    },
+
+    "diagnostic.errorSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.hintSign": ""
+
+}
