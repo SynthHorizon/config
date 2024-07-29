@@ -33,6 +33,7 @@ set smartindent
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " fix new line on a commented line
 
 
+
 "nvim remaps
 nnoremap j k
 nnoremap k j
@@ -46,13 +47,15 @@ xnoremap k j
 set clipboard=unnamedplus " Setup clipboard
 
 
+
 " Visuals
 :set completeopt-=preview " For No Previews
 
-:colorscheme apprentice "Colorscheme
-let g:airline_theme='apprentice'
+:colorscheme jellybeans "Colorscheme
+let g:airline_theme='jellybeans'
 
 let g:airline_powerline_fonts = 1
+
 
 
 " NerdTree remaps
@@ -64,8 +67,10 @@ let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
 
+
 " Tagbar remaps
 nmap <C-p> :TagbarToggle<CR>
+
 
 
 " Airline remaps
@@ -73,6 +78,8 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+
 
 " coc.nvim remaps
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -99,3 +106,16 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
+" Redefine diagnostic signs to be empty using autocmd to ensure it's applied after Coc.nvim is initialized
+autocmd VimEnter * sign define CocError text= texthl=CocError linehl= numhl=
+autocmd VimEnter * sign define CocWarning text= texthl=CocWarning linehl= numhl=
+autocmd VimEnter * sign define CocInfo text= texthl=CocInfo linehl= numhl=
+autocmd VimEnter * sign define CocHint text= texthl=CocHint linehl= numhl=
+
+" Set diagnostic signs to empty in coc-settings.json
+let g:coc_user_config = {
+    \ 'diagnostic.errorSign': '',
+    \ 'diagnostic.warningSign': '',
+    \ 'diagnostic.infoSign': '',
+    \ 'diagnostic.hintSign': ''
+    \}

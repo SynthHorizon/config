@@ -14,29 +14,28 @@
             }
         }
     },
-
-
     "suggest": {
         "floatConfig": {
             "width": 60,
             "height": 10,
             "border": true,
-            "floatEnable": false
+            "floatEnable": true
         },
-
         "maxMenuWidth": 60,
         "minMenuWidth": 10,
-        "maxCompleteItemCount": 20
+        "maxCompleteItemCount": 20,
+        "autoTrigger": "always",
+        "minTriggerInputLength": 2
     },
-
-
     "signature": {
-        "enable": false
+        "enable": true,
+        "floatConfig": {
+            "width": 60,
+            "height": 10
+        }
     },
-
-
     "hover": {
-        "enable": false,
+        "enable": true,
         "floatConfig": {
             "width": 60,
             "height": 10,
@@ -44,16 +43,13 @@
             "maxHeight": 10
         }
     },
-
-
     "diagnostic": {
         "signOffset": 0,
         "level": "error"
     },
-
     "diagnostic.errorSign": "",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "",
     "diagnostic.hintSign": ""
-
 }
+
