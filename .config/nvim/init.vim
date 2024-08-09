@@ -34,15 +34,38 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 
 
 
-"nvim remaps
-nnoremap j k
-nnoremap k j
+" Neovim remaps
+" Remap navigation keys one key to the right
+nnoremap j h
+" k is mapped properly by default
+nnoremap l j
+nnoremap ; l
 
-vnoremap j k
-vnoremap k j
+vnoremap j h
+" k is mapped properly by default
+vnoremap l j
+vnoremap ; l
 
-xnoremap j k
-xnoremap k j
+" Remap window movement keys to match new navigation keybindings
+nnoremap <C-w>j <C-w>h
+nnoremap <C-w>k <C-w>j
+nnoremap <C-w>l <C-w>k
+nnoremap <C-w>; <C-w>l
+
+" Also allow Shift with the navigation keys
+nnoremap <C-w>J <C-w>H
+nnoremap <C-w>K <C-w>J
+nnoremap <C-w>L <C-w>K
+nnoremap <C-w>: <C-w>L
+
+" Map Ctrl + S to save
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+vnoremap <C-s> <Esc>:w<CR>
+
+nnoremap U <C-r>
+inoremap U <C-r>
+vnoremap U <C-r>
 
 set clipboard=unnamedplus " Setup clipboard
 
@@ -73,11 +96,30 @@ nmap <C-p> :TagbarToggle<CR>
 
 
 
-" Airline remaps
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 
 
@@ -105,6 +147,11 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call CocAction('doHover')<CR>
+
+" Popup menu size
+set pumwidth=10 " Adjust the width of the popup menu
+set pumheight=10 " Adjust the height of the popup menu
+set pumblend=10 " Adjust the transparency of the popup menu
 
 " Redefine diagnostic signs to be empty using autocmd to ensure it's applied after Coc.nvim is initialized
 autocmd VimEnter * sign define CocError text= texthl=CocError linehl= numhl=
