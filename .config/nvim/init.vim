@@ -1,19 +1,25 @@
 " Plugins
 call plug#begin()
-Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
-Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
-Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
-Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
-Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-Plug 'https://github.com/preservim/nerdtree' " NerdTree
+Plug 'tpope/vim-surround' " Surrounding ysw)
+Plug 'tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'ap/vim-css-color' " CSS Color Preview
+Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 
-Plug 'https://github.com/vim-airline/vim-airline' " Status bar
-Plug 'https://github.com/vim-airline/vim-airline-themes' " Airline themes
-Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
+" Plug 'tc50cal/vim-terminal' " Vim Terminal
+" Plug 'voldikss/vim-floaterm'
+" Plug 'kassio/neoterm'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} "Autocompletion
 
-" Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+Plug 'preservim/nerdtree' " NerdTree
+
+Plug 'vim-airline/vim-airline' " Status bar
+Plug 'vim-airline/vim-airline-themes' " Airline themes
+Plug 'ryanoasis/vim-devicons' " Developer Icons
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocompletion
+
+Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 set encoding=UTF-8
 call plug#end()
 
@@ -34,7 +40,21 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 
 
 
-" Neovim remaps
+" Visuals
+:set completeopt-=preview " For No Previews
+
+:colorscheme orbital "Colorscheme
+let g:airline_theme='orbital'
+
+let g:airline_powerline_fonts = 1
+
+
+
+" Neovim config
+set clipboard=unnamedplus " Setup clipboard
+" Remap ctrl + w to esc + ctrl + w to make exiting terminal easier
+" tnoremap <C-w> <Esc><C-w>
+
 " Remap navigation keys one key to the right
 nnoremap j h
 " k is mapped properly by default
@@ -48,14 +68,14 @@ vnoremap ; l
 
 " Remap window movement keys to match new navigation keybindings
 nnoremap <C-w>j <C-w>h
-nnoremap <C-w>k <C-w>j
-nnoremap <C-w>l <C-w>k
+" k is mapped properly by default
+nnoremap <C-w>l <C-w>j
 nnoremap <C-w>; <C-w>l
 
 " Also allow Shift with the navigation keys
 nnoremap <C-w>J <C-w>H
-nnoremap <C-w>K <C-w>J
-nnoremap <C-w>L <C-w>K
+" k is mapped properly by default
+nnoremap <C-w>L <C-w>J
 nnoremap <C-w>: <C-w>L
 
 " Map Ctrl + S to save
@@ -63,27 +83,31 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 vnoremap <C-s> <Esc>:w<CR>
 
+" Map Ctrl + x to quit
+nnoremap <C-x> :q<CR>
+inoremap <C-x> <Esc>:q<CR>
+vnoremap <C-x> <Esc>:q<CR>
+
+" Remap undo to shift + u
 nnoremap U <C-r>
-inoremap U <C-r>
+" inoremap U <C-r>
 vnoremap U <C-r>
 
-set clipboard=unnamedplus " Setup clipboard
+" Pane scaling
+nnoremap <C-n> :vertical resize +5<CR>
+nnoremap <C-m> :vertical resize -5<CR>
 
 
 
-" Visuals
-:set completeopt-=preview " For No Previews
-
-:colorscheme jellybeans "Colorscheme
-let g:airline_theme='jellybeans'
-
-let g:airline_powerline_fonts = 1
+" Toggleterm config
+nnoremap <C-r> :ToggleTerm<CR>
+tnoremap <Esc> <C-\><C-n>
+lua require("toggleterm").setup()
 
 
-
-" NerdTree remaps
+" NerdTree config
 nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 let g:NERDTreeDirArrowExpandable="+"
@@ -91,11 +115,13 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 
 
-" Tagbar remaps
+" Tagbar config
 nmap <C-p> :TagbarToggle<CR>
+nmap <C-[> :TagbarClose<CR>
 
 
 
+" Airline config
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -123,7 +149,7 @@ let g:airline_symbols.linenr = ''
 
 
 
-" coc.nvim remaps
+" coc.nvim config
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
