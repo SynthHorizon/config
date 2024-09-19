@@ -8,6 +8,7 @@ Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
 " Plug 'voldikss/vim-floaterm'
 " Plug 'kassio/neoterm'
+
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 
@@ -20,6 +21,7 @@ Plug 'ryanoasis/vim-devicons' " Developer Icons
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocompletion
 
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+
 set encoding=UTF-8
 call plug#end()
 
@@ -43,8 +45,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 " Visuals
 :set completeopt-=preview " For No Previews
 
-:colorscheme orbital "Colorscheme
-let g:airline_theme='orbital'
+:colorscheme synth "Colorscheme
+let g:airline_theme='synth'
 
 let g:airline_powerline_fonts = 1
 
@@ -94,8 +96,16 @@ nnoremap U <C-r>
 vnoremap U <C-r>
 
 " Pane scaling
-nnoremap <C-n> :vertical resize +5<CR>
-nnoremap <C-m> :vertical resize -5<CR>
+nnoremap <C-n> :vertical resize -5<CR>
+nnoremap <C-m> :vertical resize +5<CR>
+
+nnoremap <C-,> :horizontal resize -5<CR>
+nnoremap <C-.> :horizontal resize +5<CR>
+
+" Tab navigation
+nnoremap <C-tab> gt
+vnoremap <C-tab> gt
+inoremap <C-tab> gt
 
 
 
@@ -103,6 +113,7 @@ nnoremap <C-m> :vertical resize -5<CR>
 nnoremap <C-r> :ToggleTerm<CR>
 tnoremap <Esc> <C-\><C-n>
 lua require("toggleterm").setup()
+
 
 
 " NerdTree config
@@ -117,7 +128,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 " Tagbar config
 nmap <C-p> :TagbarToggle<CR>
-nmap <C-[> :TagbarClose<CR>
+" nmap <C-[> :TagbarClose<CR>
 
 
 
