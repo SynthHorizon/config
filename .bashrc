@@ -13,7 +13,6 @@ RESET='\[\033[0m\]'
 # PS1="${DARK_GREY}\u${LIGHT_GREY}@${LIGHTER_GREY}\h - ${WHITE}[\w]${RESET} \n   > "
 PS1="${LIGHT_GREY}[\w] ${LIGHT_GREY}➤ ${RESET}"
 
-
 # probably won't care to fix later
 # LS Colors
 # LS_COLORS="di=1;34:fi=0;34:"
@@ -21,6 +20,15 @@ PS1="${LIGHT_GREY}[\w] ${LIGHT_GREY}➤ ${RESET}"
  #Apply LS Colors
 # alias ls='ls --color=auto'
 
+alias nv=nvim
+
+alias cl=clear
+alias d=exit
+alias power='sudo poweroff'
+
+alias build='cargo build'
+alias run='cargo run'
+alias tree='tree-rs'
 
 cd ~
 . "$HOME/.cargo/env"
